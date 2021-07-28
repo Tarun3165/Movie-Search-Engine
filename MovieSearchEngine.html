@@ -34,6 +34,7 @@
       width: 46%;
       margin: auto;
       padding: 3%;
+    
     }
     #movie {
       background-color: rgb(3, 11, 23);
@@ -60,6 +61,11 @@
       color: rgb(207, 23, 177);
       font-size: larger;
     }
+    #recomended img{ 
+      margin-left: 3VH;
+       width:6VH;
+       height:5VH;
+    }
   </style>
   <body> 
       <form action="">
@@ -74,47 +80,46 @@
         </div>
       </form>
       <div id="moviesContainer">
+        
         <div id="movie">
           <div id="movie-img">
             <img
               id="poster"
-              src="https://m.media-amazon.com/images/M/MV5BNTkwOTE1ZDYtODQ3Yy00YTYwLTg0YWQtYmVkNmFjNGZlYmRiXkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_SX300.jpg"
+              src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg"
               alt=""
             />
           </div>
           <div id="movie-info">
             <p>
               <span class="black">Title:&nbsp; </span>
-              <span id="movieName">Loki</span>
+              <span id="movieName">Inception </span> <span id="recomended" > <img src="https://img-premium.flaticon.com/png/512/3073/premium/3073432.png?token=exp=1627498950~hmac=ee849082bd78d1a97fc417e29388cce8" alt="">  </span>
             </p>
             <p>
               <span class="black">Plot:&nbsp;</span>
               <span id="moviePlot"
-                >The mercurial villain Loki resumes his role as the God of
-                Mischief in a new series that takes place after the events of
-                “Avengers: Endgame.”</span
+                >A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.”</span
               >
             </p>
             <p>
               <span class="black">Genre:&nbsp;</span>
-              <span id="movieGenre">Action, Adventure, Fantasy</span>
+              <span id="movieGenre">Action, Adventure, Sci-Fi</span>
             </p>
             <p>
               <span class="black">Actors:&nbsp;</span>
-              <span id="movieActors">Tom Hiddleston, Owen Wilson, Gugu Mbatha-Raw</span
+              <span id="movieActors">Leonardo DiCaprio, Joseph Gordon-Levitt, Elliot Page</span
               >
             </p>
             <p>
               <span class="black">Release Date:&nbsp;</span>
-              <span id="movieDate">09 Jun 2021</span>
+              <span id="movieDate"> 16 Jul 2010</span>
             </p>
             <p>
               <span class="black">IMDB Rating:&nbsp;</span>
-              <span id="movieRating">8.5</span>
+              <span id="movieRating">8.8</span>
             </p>
             <p>
               <span class="black">language:&nbsp;</span>
-              <span id="movieLanguage">English</span>
+              <span id="movieLanguage"> English, Japanese, French</span>
             </p>
           </div>
         </div>
@@ -126,6 +131,7 @@
   async function getMovie(event) {
     event.preventDefault();
     let movie = document.getElementById("movie");
+    let recomended = document.getElementById("recomended");
     let search = document.getElementById("search").value;
 
     try {
@@ -150,10 +156,15 @@
       movieDate.innerHTML = ` ${data.Released}`;
       movieRating.innerHTML = ` ${data.imdbRating}`;
       movieLanguage.innerHTML = ` ${data.Language}`;
+      if(data.imdbRating >=8.5)
+      recomended.innerHTML= `<img src="https://img-premium.flaticon.com/png/512/3073/premium/3073432.png?token=exp=1627498950~hmac=ee849082bd78d1a97fc417e29388cce8" alt="">  `
+      else
+      recomended.innerHTML=null;
       console.log(data);
 
     } catch (err) {
-      movie.innerHTML = ` <img src="https://media0.giphy.com/media/5nj4KLBy2mhkH1pUWT/giphy.gif" alt="">`;
+      movie.innerHTML = ` <img  src="https://image.freepik.com/free-vector/404-error-background_23-2148110015.jpg" alt="">`;
+      console.log(err);
     }
   }
 </script>
